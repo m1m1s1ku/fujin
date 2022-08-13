@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<opml version="1.0">
+    <head>
+        <title>LeBon subscriptions in feedly Cloud</title>
+    </head>
+    <body>
+        <outline text="Tube deviant TG" title="Tube deviant TG">
+            <outline type="rss" text="Hasheur Live" title="Hasheur Live" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCd1AdBu2cmlN0P_TxtzN6ew" htmlUrl="https://www.youtube.com/channel/UCd1AdBu2cmlN0P_TxtzN6ew"/>
+            <outline type="rss" text="Sud Radio" title="Sud Radio" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCESTwDXpoMgiYBHipMdKTkQ" htmlUrl="https://www.youtube.com/channel/UCESTwDXpoMgiYBHipMdKTkQ"/>
+            <outline type="rss" text="jimleveilleur live" title="jimleveilleur live" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCQFojunP7zqQ1SC9b_MiuOQ" htmlUrl="https://www.youtube.com/channel/UCQFojunP7zqQ1SC9b_MiuOQ"/>
+            <outline type="rss" text="Idriss J. Aberkane" title="Idriss J. Aberkane" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCsBPtU4hJkWNQ4kA-IsxgKw" htmlUrl="https://www.youtube.com/channel/UCsBPtU4hJkWNQ4kA-IsxgKw"/>
+            <outline type="rss" text="Hasheur (uploads) on YouTube" title="Hasheur (uploads) on YouTube" xmlUrl="https://www.youtube.com/feeds/videos.xml?playlist_id=UUhlTcWDE8gd4tsl_L727NrQ" htmlUrl="https://www.youtube.com/playlist?list=UUhlTcWDE8gd4tsl_L727NrQ"/>
+            <outline type="rss" text="Grand Angle Crypto" title="Grand Angle Crypto" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCT5FYQ_io06t7aY8rShgzvA" htmlUrl="https://www.youtube.com/channel/UCT5FYQ_io06t7aY8rShgzvA"/>
+            <outline type="rss" text="DIVIZIONAIR" title="DIVIZIONAIR" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCjSL-b6HlzjQbz3TjajMT9w" htmlUrl="https://www.youtube.com/channel/UCjSL-b6HlzjQbz3TjajMT9w"/>
+            <outline type="rss" text="Journal du Coin" title="Journal du Coin" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UC7qnB0XxzOEwWWn9Q6HPmCw" htmlUrl="https://www.youtube.com/channel/UC7qnB0XxzOEwWWn9Q6HPmCw"/>
+            <outline type="rss" text="Le Monde Moderne" title="Le Monde Moderne" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCA3dZqGawAvJO6Lexbj8EGg" htmlUrl="https://www.youtube.com/channel/UCA3dZqGawAvJO6Lexbj8EGg"/>
+            <outline type="rss" text="Enter The Crypto Matrix" title="Enter The Crypto Matrix" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCefQC4Y-X9MBRuYBKc2waiQ" htmlUrl="https://www.youtube.com/channel/UCefQC4Y-X9MBRuYBKc2waiQ"/>
+            <outline type="rss" text="Cryptoast" title="Cryptoast" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCD9yJ3yOv6hCMeYLYAVi7zw" htmlUrl="https://www.youtube.com/channel/UCD9yJ3yOv6hCMeYLYAVi7zw"/>
+            <outline type="rss" text="Farine de blé" title="Farine de blé" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCOaAb5oXQ9x2hSmINrffWBQ" htmlUrl="https://www.youtube.com/channel/UCOaAb5oXQ9x2hSmINrffWBQ"/>
+        </outline>
+        <outline text="Crypto Twitter" title="Crypto Twitter">
+            <outline type="rss" text="Forbes - Crypto &amp; Blockchain" title="Forbes - Crypto &amp; Blockchain" xmlUrl="http://www.forbes.com/crypto-blockchain//feed2/" htmlUrl="https://www.forbes.com/crypto-blockchain/"/>
+            <outline type="rss" text="Team Kujira" title="Team Kujira" xmlUrl="https://medium.com/feed/team-kujira" htmlUrl="https://medium.com/team-kujira?source=rss----423339d80757---4"/>
+            <outline type="rss" text="Vitalik Buterin's website" title="Vitalik Buterin's website" xmlUrl="http://vitalik.ca/feed.xml" htmlUrl="https://vitalik.ca/"/>
+            <outline type="rss" text="Decrypt" title="Decrypt" xmlUrl="https://decryptmedia.com/feed/" htmlUrl="https://decrypt.co/feed"/>
+            <outline type="rss" text="Cointelegraph" title="Cointelegraph" xmlUrl="http://cointelegraph.com/rss" htmlUrl="https://cointelegraph.com"/>
+            <outline type="rss" text="Cointribune" title="Cointribune" xmlUrl="https://www.thecointribune.com/feed/" htmlUrl="https://www.cointribune.com"/>
+            <outline type="rss" text="La voie du ฿ITCOIN" title="La voie du ฿ITCOIN" xmlUrl="http://blog.lavoiedubitcoin.info/feed/atom" htmlUrl="http://blog.lavoiedubitcoin.info/"/>
+            <outline type="rss" text="Stories by Chihuahua on Medium" title="Stories by Chihuahua on Medium" xmlUrl="https://medium.com/feed/@chihuahuachain" htmlUrl="https://medium.com/@chihuahuachain?source=rss-fc0977069b5------2"/>
+            <outline type="rss" text="Journal du Coin" title="Journal du Coin" xmlUrl="https://journalducoin.com/feed/" htmlUrl="https://journalducoin.com"/>
+            <outline type="rss" text="The Hacker News" title="The Hacker News" xmlUrl="http://thehackernews.com/feeds/posts/default" htmlUrl="https://thehackernews.com/"/>
+            <outline type="rss" text="CoinDesk" title="CoinDesk" xmlUrl="http://feeds.feedburner.com/CoinDesk" htmlUrl="https://www.coindesk.com"/>
+        </outline>
+        <outline text="Crypto TG" title="Crypto TG">
+            <outline type="rss" text="Forbes - Crypto &amp; Blockchain" title="Forbes - Crypto &amp; Blockchain" xmlUrl="http://www.forbes.com/crypto-blockchain//feed2/" htmlUrl="https://www.forbes.com/crypto-blockchain/"/>
+            <outline type="rss" text="Team Kujira" title="Team Kujira" xmlUrl="https://medium.com/feed/team-kujira" htmlUrl="https://medium.com/team-kujira?source=rss----423339d80757---4"/>
+            <outline type="rss" text="Vitalik Buterin's website" title="Vitalik Buterin's website" xmlUrl="http://vitalik.ca/feed.xml" htmlUrl="https://vitalik.ca/"/>
+            <outline type="rss" text="Decrypt" title="Decrypt" xmlUrl="https://decryptmedia.com/feed/" htmlUrl="https://decrypt.co/feed"/>
+            <outline type="rss" text="Cointelegraph" title="Cointelegraph" xmlUrl="http://cointelegraph.com/rss" htmlUrl="https://cointelegraph.com"/>
+            <outline type="rss" text="Cointribune" title="Cointribune" xmlUrl="https://www.thecointribune.com/feed/" htmlUrl="https://www.cointribune.com"/>
+            <outline type="rss" text="La voie du ฿ITCOIN" title="La voie du ฿ITCOIN" xmlUrl="http://blog.lavoiedubitcoin.info/feed/atom" htmlUrl="http://blog.lavoiedubitcoin.info/"/>
+            <outline type="rss" text="Stories by Chihuahua on Medium" title="Stories by Chihuahua on Medium" xmlUrl="https://medium.com/feed/@chihuahuachain" htmlUrl="https://medium.com/@chihuahuachain?source=rss-fc0977069b5------2"/>
+            <outline type="rss" text="Journal du Coin" title="Journal du Coin" xmlUrl="https://journalducoin.com/feed/" htmlUrl="https://journalducoin.com"/>
+            <outline type="rss" text="The Hacker News" title="The Hacker News" xmlUrl="http://thehackernews.com/feeds/posts/default" htmlUrl="https://thehackernews.com/"/>
+            <outline type="rss" text="CoinDesk" title="CoinDesk" xmlUrl="http://feeds.feedburner.com/CoinDesk" htmlUrl="https://www.coindesk.com"/>
+        </outline>
+    </body>
+</opml>
