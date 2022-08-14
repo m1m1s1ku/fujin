@@ -8,7 +8,7 @@ import logger from "../../logger";
 
 export default function helpMiddleware(ctx: Context): Promise<Message.TextMessage> {
     if(config.verbose) {
-        logger.info('TG help', ctx);
+        logger.info(ctx);
     }
     
     let helpText = `${config.name} v${config.version}\n\n`;

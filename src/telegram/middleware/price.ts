@@ -12,10 +12,10 @@ export default async function priceMiddleware(ctx: Context): Promise<Message.Tex
     if(!message) { return null; }
 
     if(config.verbose) {
-        logger.info('TG Price reply', {
+        logger.info({
             context: ctx,
             token: ctx.match,
-            message,
+            reply: message,
         });
     }
 
