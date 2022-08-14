@@ -7,10 +7,12 @@ import { parse } from './opml';
 import config from '../config';
 import twitter from '../twitter';
 import client from '../database/client';
+import logger from '../logger';
 
 const kImportIntoDatabase = false;
 
 function _onFeedEvent(bot: Bot, item: { link: string; }): void { // receive full xml item.
+    logger.info(`Sending ${item.link}`);
     Promise.all([
         twitter.v2.tweet(item.link),
         bot.api.sendMessage(config.chatID, item.link)
@@ -35,6 +37,10 @@ type Feed = {
  * @returns Emitter handle
  */
 export default async function start(bot: Bot, source: FeedSource = 'remote'): Promise<RssFeedEmitter> {
+    if(config.verbose) {
+        logger.info(`Getting feeds from ${source}`);
+    }
+
     const feeder = new RssFeedEmitter({ skipFirstLoad: true });
 
     switch(source) {

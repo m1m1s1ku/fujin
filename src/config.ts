@@ -4,6 +4,7 @@ import { version } from '../package.json';
 
 export function configBuilder(): {
     name: string;
+    verbose: boolean;
     version: string;
     address: string;
     shortName: string;
@@ -29,6 +30,7 @@ export function configBuilder(): {
     },
 } {
     const variables = [
+        'VERBOSE',
         'TWITTER_APP_KEY',
         'TWITTER_APP_SECRET',
         'TWITTER_ACCESS_TOKEN',
@@ -58,6 +60,7 @@ export function configBuilder(): {
             telegram: lbcc.telegram,
         },
         refreshInterval: lbcc.refreshInterval,
+        verbose: env.VERBOSE === "true" ? true : false,
         address: unwrap(env.DEV_TIP_ADDRESS),
         supabase: {
             url: unwrap(env.SUPABASE_URL),
