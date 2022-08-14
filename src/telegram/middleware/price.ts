@@ -20,6 +20,6 @@ export default async function priceMiddleware(ctx: Context): Promise<Message.Tex
 
     return ctx.reply(coin.message, {
         parse_mode: 'HTML',
-        reply_markup: coin.twitter ? new InlineKeyboard().url('Twitter', coin.twitter) : undefined,
+        reply_markup: coin.twitter ? new InlineKeyboard().url('Twitter', `https://twitter.com/${coin.twitter}`) : undefined,
     });
 }
