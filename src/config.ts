@@ -54,9 +54,9 @@ export function configBuilder(): BotConfig  {
 
     return {
         name,
-        version: version,
-        chatID: chatID,
-        shortName: shortName,
+        version,
+        chatID,
+        shortName,
         urls: {
             website: telegram, // todo : replace by website once done
             twitter: twitter,
