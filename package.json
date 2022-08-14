@@ -4,6 +4,7 @@
   "dependencies": {
     "@grammyjs/runner": "^1.0.4",
     "@grammyjs/transformer-throttler": "^1.1.2",
+    "@supabase/supabase-js": "^1.35.6",
     "@tuananh/sax-parser": "^1.0.2",
     "cross-fetch": "^3.1.5",
     "dotenv": "^16.0.1",

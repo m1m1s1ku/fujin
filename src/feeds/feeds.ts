@@ -15,21 +15,25 @@ function _onFeedEvent(bot: Bot, item: { link: string; }): void { // receive full
 
 export default async function start(bot: Bot): Promise<RssFeedEmitter> {
     const items = await parse('../../feeds.opml');
-    const categories: string[] = [];
     
     const feeder = new RssFeedEmitter({ skipFirstLoad: true });
-    for(const [key, value] of Object.entries(items)) {
-        categories.push(key);
+    const feeds = [];
+    for(const [category, value] of Object.entries(items)) {
         feeder.add({
             url: value.map(feed => feed.feedURL),
             refresh: lbcc.refreshInterval,
-            eventName: key
+            eventName: category
         });
 
-        // TODO XXX : By category "rules" + redirect to handler
-        feeder.on(key, (item) => _onFeedEvent(bot, item));
+        // TODO XXX : Implement by category "rules"
+        feeder.on(category, (item) => _onFeedEvent(bot, item));
+        feeds.push(...value);
     }
+
+    // TODO XXX : Improve error handling
     feeder.on('error', (err) => {});
+
+    console.warn(feeds);
 
     return feeder;
 }
