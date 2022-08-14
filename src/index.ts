@@ -9,18 +9,15 @@ import { parse } from './opml';
 import fetch from 'cross-fetch';
 import { bigIntToString } from './utils';
 import { TwitterApi } from 'twitter-api-v2';
-import TwitterApiBase from 'twitter-api-v2/dist/client.base';
+import config from './config';
 
 const twitterClient = new TwitterApi({
-    appKey: process.env.TWITTER_APP_KEY,
-    appSecret: process.env.TWITTER_APP_SECRET,
-    accessToken: process.env.TWITTER_ACCESS_TOKEN,
-    accessSecret: process.env.TWITTER_ACCESS_SECRET,
-} as unknown as TwitterApiBase);
-const botToken = process.env.BOT_TOKEN;
-if (!botToken) {
-  throw new Error("BOT_TOKEN is required");
-}
+    appKey: config.twitter.appKey,
+    appSecret: config.twitter.appSecret,
+    accessToken: config.twitter.accessToken,
+    accessSecret: config.twitter.accessSecret,
+});
+const botToken = config.telegram.botToken;
 
 const kLBCCURL = "https://lbcc.link";
 const kGCAPI = "https://api.coingecko.com/api/v3";
