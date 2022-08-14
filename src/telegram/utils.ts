@@ -8,7 +8,7 @@ interface TelegramCommand {
     description: string;
 }
 
-export interface CommandDescriptor {
+interface CommandDescriptor {
     actions: string[],
     description: string;
 }

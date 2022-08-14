@@ -5,14 +5,14 @@ import { run } from '@grammyjs/runner';
 import feeds from './feeds/feeds';
 import twitterClient from './twitter';
 
-import create, { CommandDescriptor } from './telegram/utils';
+import create from './telegram/utils';
 
 import priceMiddleware from './telegram/handlers/price';
 import helpMiddleware from './telegram/handlers/help';
 import handleGrammyError from './telegram/handlers/error';
 
 (async () => {
-    const commands: Record<string, CommandDescriptor> = {
+    const commands = {
         price: {
             actions: ['p', 'price'],
             description: 'Get price from CoinGecko',
