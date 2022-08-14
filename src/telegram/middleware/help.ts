@@ -4,8 +4,13 @@ import type { Message } from "grammy/out/types.node";
 
 import { commands } from '../../bot';
 import config from "../../config";
+import logger from "../../logger";
 
 export default function helpMiddleware(ctx: Context): Promise<Message.TextMessage> {
+    if(config.verbose) {
+        logger.info('TG help', ctx);
+    }
+    
     let helpText = `${config.name} v${config.version}\n\n`;
 
     for(const [ , commandDescriptor] of Object.entries(commands)) {
