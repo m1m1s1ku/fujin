@@ -26,6 +26,7 @@ export default async function start(twitterClient: TwitterApi, telegramBot: Bot)
             eventName: key
         });
 
+        // TODO XXX : By category "rules" + redirect to handler
         feeder.on(key, (item) => _onFeedEvent(twitterClient, telegramBot, item));
     }
     feeder.on('error', (err) => {});
