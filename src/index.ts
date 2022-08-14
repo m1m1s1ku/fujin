@@ -13,12 +13,12 @@ import feeds from './feeds/feeds';
 import fetchToken from './coingecko/price';
 import lbcc from './lbcc/constants';
 
-interface CommandDescritor {
+interface CommandDescriptor {
     actions: string[],
     description: string;
 };
 
-const commands: Record<string, CommandDescritor> = {
+const commands: Record<string, CommandDescriptor> = {
     price: {
         actions: ['p', 'price'],
         description: 'Get price from CoinGecko',
