@@ -21,8 +21,6 @@ import handleBotError from './telegram/error';
 
     const runner = run(bot);
 
-    console.warn('Started');
-
     function cleanup() {
         feeder.destroy();
         if(runner.isRunning()) { runner.stop(); }

@@ -16,7 +16,7 @@ function _onFeedEvent(bot: Bot, item: { link: string; }): void { // receive full
     Promise.all([
         twitter.v2.tweet(item.link),
         bot.api.sendMessage(config.chatID, item.link)
-    ]).catch(console.error);
+    ]).catch(logger.error);
 };
 
 type FeedSource = 'local' | 'remote';
