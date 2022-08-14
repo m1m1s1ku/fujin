@@ -17,7 +17,7 @@ export function configBuilder(): {
 
     for(const variable of variables) {
         if(!env[variable]) {
-            throw new Error('Invalid config');
+            throw new Error(`Invalid config value : ${variable}`);
         }
     }
 
