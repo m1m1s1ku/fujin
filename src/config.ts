@@ -1,6 +1,4 @@
-function unwrapValue(val: unknown): string {
-    return val as string;
-}
+import { unwrap } from "./utils";
 
 export function configBuilder(): {
     twitter: {
@@ -25,13 +23,13 @@ export function configBuilder(): {
 
     return {
         twitter: {
-            appKey: unwrapValue(env.TWITTER_APP_KEY),
-            appSecret: unwrapValue(env.TWITTER_APP_SECRET),
-            accessToken: unwrapValue(env.TWITTER_ACCESS_TOKEN),
-            accessSecret: unwrapValue(env.TWITTER_ACCESS_SECRET),
+            appKey: unwrap(env.TWITTER_APP_KEY),
+            appSecret: unwrap(env.TWITTER_APP_SECRET),
+            accessToken: unwrap(env.TWITTER_ACCESS_TOKEN),
+            accessSecret: unwrap(env.TWITTER_ACCESS_SECRET),
         },
         telegram: {
-            botToken: unwrapValue(env.TELEGRAM_BOT_TOKEN),
+            botToken: unwrap(env.TELEGRAM_BOT_TOKEN),
         }
     };
 }

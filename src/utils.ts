@@ -1,3 +1,7 @@
+export function unwrap<T = unknown>(val: unknown): T {
+    return val as T;
+}
+
 export function trendingIcon(change: number) {
     return change > 0 ? "📈" : "📉";
 }
