@@ -1,9 +1,10 @@
 import { Context, InlineKeyboard } from "grammy";
+
 import type { Message } from "grammy/out/types.node";
+import type { CommandDescriptor } from "../../bot";
+
 import config from "../../config";
 import lbcc from '../../externals/lbcc/constants';
-
-import { CommandDescriptor } from "../utils";
 
 export default function helpMiddleware(ctx: Context, commands:Record<string, CommandDescriptor>): Promise<Message.TextMessage> {
     let helpText = `${config.name} v${config.version}\n\n`;
