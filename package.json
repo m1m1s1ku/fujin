@@ -1,5 +1,5 @@
 {
-  "name": "pince-lbcc-bot",
+  "name": "fujin-bot",
   "version": "0.0.1",
   "dependencies": {
     "@grammyjs/runner": "^1.0.4",

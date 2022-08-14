@@ -1,6 +1,6 @@
 import mimisiku from './externals/mimisiku/constants';
 import { unwrap } from "./utils";
-import { version } from '../package.json';
+import { name, version } from '../package.json';
 
 export type BotConfig = {
     name: string;
@@ -44,7 +44,7 @@ export function configBuilder(): BotConfig  {
     ];
 
     const env = process.env;
-    const { username, chatID, shortName, telegram, twitter } = mimisiku;
+    const { chatID, shortName, telegram, twitter } = mimisiku;
 
     for(const variable of variables) {
         if(!env[variable]) {
@@ -53,7 +53,7 @@ export function configBuilder(): BotConfig  {
     }
 
     return {
-        name: username,
+        name,
         version: version,
         chatID: chatID,
         shortName: shortName,
