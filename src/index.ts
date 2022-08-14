@@ -7,27 +7,16 @@ import twitterClient from './twitter';
 
 import create from './telegram/utils';
 
-import priceMiddleware from './telegram/handlers/price';
-import helpMiddleware from './telegram/handlers/help';
+import { commands } from './bot';
+
 import handleGrammyError from './telegram/handlers/error';
 
 (async () => {
-    const commands = {
-        price: {
-            actions: ['p', 'price'],
-            description: 'Get price from CoinGecko',
-        },
-        help: {
-            actions: ['help'],
-            description: 'Get informations about this bot',
-        }
-    };
-
     const bot = await create(commands);
     const feeder = await feeds(twitterClient, bot);
 
-    bot.command(commands.price.actions, priceMiddleware);
-    bot.command(commands.help.actions, ctx => helpMiddleware(ctx, commands));
+    bot.command(commands.price.actions, commands.price.middleware);
+    bot.command(commands.help.actions, commands.help.middleware);
 
     bot.catch(handleGrammyError);
 

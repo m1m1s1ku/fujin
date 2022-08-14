@@ -1,11 +1,11 @@
 import { Context, InlineKeyboard } from "grammy";
 
 import type { Message } from "grammy/out/types.node";
-import type { CommandDescriptor } from "../../bot";
 
+import { commands } from '../../bot';
 import config from "../../config";
 
-export default function helpMiddleware(ctx: Context, commands:Record<string, CommandDescriptor>): Promise<Message.TextMessage> {
+export default function helpMiddleware(ctx: Context): Promise<Message.TextMessage> {
     let helpText = `${config.name} v${config.version}\n\n`;
 
     for(const [ , commandDescriptor] of Object.entries(commands)) {
