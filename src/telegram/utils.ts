@@ -3,6 +3,7 @@ import { apiThrottler } from '@grammyjs/transformer-throttler';
 
 import config from '../config';
 import type { CommandDescriptor } from "../bot";
+import silentForBots from "./middleware/antibot";
 
 interface TelegramCommand { 
     command: string; 
@@ -24,6 +25,7 @@ function _parseCommands(programCommands: Record<string, CommandDescriptor>): Tel
 export default async function create(commands: Record<string, CommandDescriptor>): Promise<Bot> {
     const bot = new Bot(config.telegram.botToken);
     bot.api.config.use(apiThrottler());
+    bot.use(silentForBots);
 
     await bot.api.setMyCommands(_parseCommands(commands));
     
