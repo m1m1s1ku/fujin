@@ -47,9 +47,7 @@ export function configBuilder(): BotConfig  {
     const { chatID, shortName, telegram, twitter } = mimisiku;
 
     for(const variable of variables) {
-        if(!env[variable]) {
-            throw new Error(`Invalid config value : ${variable}`);
-        }
+        if(!env[variable]) { throw new Error(`Invalid config value : ${variable}`); }
     }
 
     return {
