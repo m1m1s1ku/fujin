@@ -5,6 +5,9 @@ import { parse } from './opml';
 
 import lbcc from '../externals/lbcc/constants';
 import twitter from '../twitter';
+import client from '../database/client';
+
+const kImportIntoDatabase = false;
 
 function _onFeedEvent(bot: Bot, item: { link: string; }): void { // receive full xml item.
     Promise.all([
@@ -33,7 +36,17 @@ export default async function start(bot: Bot): Promise<RssFeedEmitter> {
     // TODO XXX : Improve error handling
     feeder.on('error', (err) => {});
 
-    console.warn(feeds);
+    if(kImportIntoDatabase) {
+        await client.from('feeds').insert(feeds.map(feed => {
+            return {
+                title: feed.title,
+                xmlURL: feed.feedURL,
+                htmlURL: feed.url,
+                type: feed.feedType,
+                category: feed.feedCategory,
+            };
+        }));
+    }
 
     return feeder;
 }
