@@ -11,8 +11,7 @@ import type FeedEmitter from 'rss-feed-emitter';
 import config from './config';
 import feeds from './feeds/feeds';
 import fetchToken from './coingecko/price';
-
-const kLBCCURL = "https://lbcc.link";
+import lbcc from './lbcc/constants';
 
 const twitterClient = new TwitterApi({
     appKey: config.twitter.appKey,
@@ -27,42 +26,33 @@ bot.api.config.use(apiThrottler());
 let runner: RunnerHandle | null = null;
 let feeder: FeedEmitter | null = null;
 
-const helpText = `/p - get coin data
-/help - get help
-/donate - get donation address
-`;
+(async () => {
+    feeder = await feeds(twitterClient, bot);
 
-async function setupBot() {
     await bot.api.setMyCommands([
         { command: "p", description: "Get price" },
         { command: "help", description: "Get help" },
-        { command: "donate", description: "Donate" },
     ]);
-
-    bot.command('donate', async ctx => {
-        return ctx.reply('Thanks a lot ! kujira1fygqhejwp6uzcfaf3yuypcwcd662q9u7rrzpna');
-    });
 
     bot.command('p', async ctx => {
         if(!ctx.match) { return; }
 
         const message = await fetchToken(ctx.match);
-        
+
         if(!message) { return; }
 
         return ctx.reply(message);
     })
 
     bot.command('help', ctx => {
-        const websiteButton = new InlineKeyboard().url(
-            "LBCC",
-            kLBCCURL,
-        ).url('Telegram', 'https://t.me/LeBonClubCrypto');
+        return ctx.reply(`/p - get coin data
+/help - get help
 
-        return ctx.reply(helpText, {
+Donate : kujira1fygqhejwp6uzcfaf3yuypcwcd662q9u7rrzpna
+`, {
             reply_to_message_id: ctx.msg.message_id,
             parse_mode: 'HTML',
-            reply_markup: websiteButton,
+            reply_markup: new InlineKeyboard().url("LBCC", lbcc.website).url('Telegram', lbcc.telegram),
         });
     });
 
@@ -78,11 +68,6 @@ async function setupBot() {
             console.error("Unknown error:", e);
         }
     });
-}
-
-(async () => {
-    feeder = await feeds(twitterClient, bot);
-    await setupBot();
 
     runner = run(bot);
 
