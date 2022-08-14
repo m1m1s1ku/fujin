@@ -7,10 +7,10 @@ export default function handleBotError(err: BotError<Context>) {
     logger.error(`Error while handling update ${ctx.update.update_id}:`);
     const e = err.error;
     if (e instanceof GrammyError) {
-        logger.error("Error in request:", e.description);
+        logger.error(e.description);
     } else if (e instanceof HttpError) {
-        logger.error("Could not contact Telegram:", e);
+        logger.error(e);
     } else {
-        logger.error("Unknown error:", e);
+        logger.error(e);
     }
 }
