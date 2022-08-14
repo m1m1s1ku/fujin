@@ -14,7 +14,7 @@ export function trendingIcon(change: number) {
 }
 
 export function formatPercentage(percent: number){
-    let format = (percent * 100).toFixed(2);
+    let format = (percent).toFixed(2);
 
     if(percent > 0){
         format = `+${format}`;
