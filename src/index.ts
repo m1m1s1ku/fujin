@@ -67,7 +67,7 @@ let feeder: FeedEmitter | null = null;
             helpText += `/${commandDescriptor.actions[0]} : ${commandDescriptor.description}\n`
         }
 
-        helpText += `<b>Tip :</b> <pre>${config.address}</pre>`;
+        helpText += `\n<b>Tip :</b><pre>${config.address}</pre>`;
 
         return ctx.reply(helpText, {
             reply_to_message_id: ctx.msg.message_id,
