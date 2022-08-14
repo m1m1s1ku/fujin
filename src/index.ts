@@ -61,7 +61,7 @@ let feeder: FeedEmitter | null = null;
     })
 
     bot.command(commands.help.actions, ctx => {
-        let helpText = `${config.name}\n\n`;
+        let helpText = `${config.name} v${config.version}\n\n`;
 
         for(const [ , commandDescriptor] of Object.entries(commands)) {
             helpText += `/${commandDescriptor.actions[0]} : ${commandDescriptor.description}\n`
