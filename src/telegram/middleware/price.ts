@@ -19,5 +19,7 @@ export default async function priceMiddleware(ctx: Context): Promise<Message.Tex
         });
     }
 
-    return ctx.reply(message);
+    return ctx.reply(message, {
+        parse_mode: 'HTML',
+    });
 }
