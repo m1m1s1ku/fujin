@@ -31,7 +31,7 @@ export function configBuilder(): {
             accessSecret: unwrapValue(env.TWITTER_ACCESS_SECRET),
         },
         telegram: {
-            botToken: unwrapValue(env.BOT_TOKEN),
+            botToken: unwrapValue(env.TELEGRAM_BOT_TOKEN),
         }
     };
 }
