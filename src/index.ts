@@ -3,13 +3,20 @@ import 'dotenv/config';
 import { Bot, GrammyError, HttpError, InlineKeyboard } from 'grammy';
 import { apiThrottler } from '@grammyjs/transformer-throttler';
 import { run, RunnerHandle } from '@grammyjs/runner';
-import RssFeedEmitter from 'rss-feed-emitter';
 
-import { parse } from './opml';
-import fetch from 'cross-fetch';
-import { bigIntToString } from './utils';
 import { TwitterApi } from 'twitter-api-v2';
+
+import fetch from 'cross-fetch';
+
+import type FeedEmitter from 'rss-feed-emitter';
+
 import config from './config';
+import feeds from './feeds/feeds';
+
+import { bigIntToString } from './utils';
+
+const kLBCCURL = "https://lbcc.link";
+const kGCAPI = "https://api.coingecko.com/api/v3";
 
 const twitterClient = new TwitterApi({
     appKey: config.twitter.appKey,
@@ -17,47 +24,17 @@ const twitterClient = new TwitterApi({
     accessToken: config.twitter.accessToken,
     accessSecret: config.twitter.accessSecret,
 });
-const botToken = config.telegram.botToken;
 
-const kLBCCURL = "https://lbcc.link";
-const kGCAPI = "https://api.coingecko.com/api/v3";
-const kRefreshInterval = 3000;
-
-const bot = new Bot(botToken);
+const bot = new Bot(config.telegram.botToken);
 bot.api.config.use(apiThrottler());
 
-const feeder = new RssFeedEmitter({ skipFirstLoad: true });
-feeder.on('error', (err) => {});
-
 let runner: RunnerHandle | null = null;
+let feeder: FeedEmitter | null = null;
 
 const helpText = `/p - get coin data
 /help - get help
 /donate - get donation address
 `;
-
-async function setupFeeds() {
-    const items = await parse('../feeds.opml');
-    const categories: string[] = [];
-
-    const onFeedEvent = function (item: { link: string; }) { // receive full xml item.
-        Promise.all([
-            twitterClient.v2.tweet(item.link),
-            bot.api.sendMessage(-1001238390870, item.link)
-        ]).catch(console.error);
-    };
-    
-    for(const [key, value] of Object.entries(items)) {
-        categories.push(key);
-        feeder.add({
-            url: value.map(feed => feed.feedURL),
-            refresh: kRefreshInterval,
-            eventName: key
-        });
-
-        feeder.on(key, onFeedEvent);
-    }
-}
 
 async function setupBot() {
     await bot.api.setMyCommands([
@@ -144,7 +121,7 @@ ${ath && changeFromATH && rank ? `ATH : $${ath} | Change ${changeFromATH.toFixed
 }
 
 (async () => {
-    await setupFeeds();
+    feeder = await feeds(twitterClient, bot);
     await setupBot();
 
     runner = run(bot);
@@ -153,11 +130,11 @@ ${ath && changeFromATH && rank ? `ATH : $${ath} | Change ${changeFromATH.toFixed
 })();
 
 process.once("SIGINT", () => {
-    feeder.destroy();
+    feeder?.destroy();
     runner?.stop();
 });
 
 process.once("SIGTERM", () => {
-    feeder.destroy();
+    feeder?.destroy();
     runner?.stop();
 });
