@@ -44,6 +44,7 @@ export function configBuilder(): BotConfig  {
     ];
 
     const env = process.env;
+    const { username, chatID, shortName, telegram, twitter } = mimisiku;
 
     for(const variable of variables) {
         if(!env[variable]) {
@@ -52,14 +53,14 @@ export function configBuilder(): BotConfig  {
     }
 
     return {
-        name: mimisiku.username,
+        name: username,
         version: version,
-        chatID: mimisiku.chatID,
-        shortName: mimisiku.shortName,
+        chatID: chatID,
+        shortName: shortName,
         urls: {
-            website: mimisiku.telegram,
-            twitter: mimisiku.twitter,
-            telegram: mimisiku.telegram,
+            website: telegram, // todo : replace by website once done
+            twitter: twitter,
+            telegram: telegram,
         },
         refreshInterval: mimisiku.refreshInterval,
         verbose: env.VERBOSE === "true" ? true : false,
