@@ -17,21 +17,18 @@ import priceMiddleware from './telegram/handlers/price';
 import helpMiddleware from './telegram/handlers/help';
 import handleGrammyError from './telegram/handlers/error';
 
-const twitterClient = new TwitterApi({
-    appKey: config.twitter.appKey,
-    appSecret: config.twitter.appSecret,
-    accessToken: config.twitter.accessToken,
-    accessSecret: config.twitter.accessSecret,
-});
-
-const bot = new Bot(config.telegram.botToken);
-bot.api.config.use(apiThrottler());
-
-let runner: RunnerHandle | null = null;
-let feeder: FeedEmitter | null = null;
-
 (async () => {
-    feeder = await feeds(twitterClient, bot);
+    const twitterClient = new TwitterApi({
+        appKey: config.twitter.appKey,
+        appSecret: config.twitter.appSecret,
+        accessToken: config.twitter.accessToken,
+        accessSecret: config.twitter.accessSecret,
+    });
+
+    const bot = new Bot(config.telegram.botToken);
+    bot.api.config.use(apiThrottler());
+
+    const feeder: FeedEmitter = await feeds(twitterClient, bot);
 
     const commands: Record<string, CommandDescriptor> = {
         price: {
@@ -51,17 +48,17 @@ let feeder: FeedEmitter | null = null;
 
     bot.catch(handleGrammyError);
 
-    runner = run(bot);
+    const runner = run(bot);
 
-    console.warn('Bot started');
+    console.warn('Started');
+
+    process.once("SIGINT", () => {
+        feeder.destroy();
+        runner.stop();
+    });
+    
+    process.once("SIGTERM", () => {
+        feeder.destroy();
+        runner.stop();
+    });
 })();
-
-process.once("SIGINT", () => {
-    feeder?.destroy();
-    runner?.stop();
-});
-
-process.once("SIGTERM", () => {
-    feeder?.destroy();
-    runner?.stop();
-});
