@@ -1,4 +1,4 @@
-import lbcc from './externals/lbcc/constants';
+import mimisiku from './externals/mimisiku/constants';
 import { unwrap } from "./utils";
 import { version } from '../package.json';
 
@@ -52,16 +52,16 @@ export function configBuilder(): BotConfig  {
     }
 
     return {
-        name: lbcc.username,
+        name: mimisiku.username,
         version: version,
-        chatID: lbcc.chatID,
-        shortName: lbcc.shortName,
+        chatID: mimisiku.chatID,
+        shortName: mimisiku.shortName,
         urls: {
-            website: lbcc.telegram,
-            twitter: lbcc.twitter,
-            telegram: lbcc.telegram,
+            website: mimisiku.telegram,
+            twitter: mimisiku.twitter,
+            telegram: mimisiku.telegram,
         },
-        refreshInterval: lbcc.refreshInterval,
+        refreshInterval: mimisiku.refreshInterval,
         verbose: env.VERBOSE === "true" ? true : false,
         address: unwrap(env.DEV_TIP_ADDRESS),
         supabase: {
