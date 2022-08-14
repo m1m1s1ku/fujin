@@ -1,5 +1,5 @@
 import { TwitterApi } from 'twitter-api-v2';
-import config from './config';
+import config from '../../config';
 
 const twitterClient = new TwitterApi({
     appKey: config.twitter.appKey,

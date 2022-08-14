@@ -5,8 +5,8 @@ import { groupBy } from 'ramda';
 import { parse } from './opml';
 
 import config from '../config';
-import twitter from '../twitter';
-import client from '../database/client';
+import twitter from '../externals/twitter/twitter';
+import client from '../externals/database/client';
 import logger from '../logger';
 
 const kImportIntoDatabase = false;
