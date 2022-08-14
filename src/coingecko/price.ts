@@ -38,9 +38,9 @@ ${high && low ? `H|L : $${high}|$${low}` : ''}
 ${marketCap ? `MC : $${bigIntToString(marketCap)}` : ''}
 ${fdv ? `FDV : $${bigIntToString(fdv)}` : ''}
 ${volume ? `Vol : $${bigIntToString(volume)}` : ''}
-${change1h ? `1h : ${change1h.toFixed(0)}% ${trendingIcon(change1h)}` : ''}
-${change24h ? `24h : ${change24h.toFixed(0)}% ${trendingIcon(change1h)}` : ''}
-${change7d ? `7d : ${change7d.toFixed(0)}% ${trendingIcon(change1h)}` : ''}
+${change1h ? `${trendingIcon(change1h)} 1h : ${change1h.toFixed(0)}%` : ''}
+${change24h ? `${trendingIcon(change24h)} 24h : ${change24h.toFixed(0)}%` : ''}
+${change7d ? `${trendingIcon(change7d)} 7d : ${change7d.toFixed(0)}%` : ''}
 ${maxSupply ? `Max supply : ${maxSupply}` : ''}
 ${followers ? `Followers : ${followers}` : ''}
 ${ath && changeFromATH && rank ? `ATH : $${ath} | Change ${changeFromATH.toFixed(0)}% | Rank : ${rank}` : ''}`.replace(/^\s*\n/gm, '')
