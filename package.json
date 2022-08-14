@@ -1,7 +1,6 @@
 {
   "name": "pince-lbcc-bot",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
   "dependencies": {
     "@grammyjs/runner": "^1.0.4",
     "@grammyjs/transformer-throttler": "^1.1.2",
