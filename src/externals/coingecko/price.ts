@@ -32,9 +32,9 @@ export default async function fetchToken(token: string) {
     const maxSupply: number = marketData.max_supply;
     const followers: number = communityData.twitter_followers;
 
-    const twitterHandle: string = coinData.links.twitter_screen_name;
+    const twitter: string = coinData.links.twitter_screen_name;
 
-    const message = `<a href="https://twitter.com/${twitterHandle}">${name}</a> ($${symbol.toUpperCase()})
+    const message = `${name} ($${symbol.toUpperCase()})
 Price : $${currentPrice}
 ${high && low ? `H|L : $${high}|$${low}` : ''}
 ${marketCap ? `MC : $${bigIntToString(marketCap)}` : ''}
@@ -47,5 +47,8 @@ ${maxSupply ? `Max supply : ${localizeNumber(maxSupply)}` : ''}
 ${followers ? `Followers : ${localizeNumber(followers)}` : ''}
 ${ath && changeFromATH && rank ? `ATH : $${ath} | Change ${formatPercentage(changeFromATH)}% | Rank : ${rank}` : ''}`.replace(/^\s*\n/gm, '')
 
-return message;
+return {
+    message,
+    twitter,
+};
 }
