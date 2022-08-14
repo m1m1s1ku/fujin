@@ -2,7 +2,7 @@ import lbcc from './externals/lbcc/constants';
 import { unwrap } from "./utils";
 import { version } from '../package.json';
 
-export function configBuilder(): {
+export type BotConfig = {
     name: string;
     verbose: boolean;
     version: string;
@@ -28,7 +28,9 @@ export function configBuilder(): {
     telegram: {
         botToken: string;
     },
-} {
+};
+
+export function configBuilder(): BotConfig  {
     const variables = [
         'VERBOSE',
         'TWITTER_APP_KEY',
