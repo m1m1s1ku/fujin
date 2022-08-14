@@ -37,11 +37,11 @@ import handleGrammyError from './telegram/handlers/error';
 
     process.once("SIGINT", function() {
         feeder.destroy();
-        runner.stop();
+        if(runner.isRunning()) { runner.stop(); }
     });
     
     process.once("SIGTERM", function() {
         feeder.destroy();
-        runner.stop();
+        if(runner.isRunning()) { runner.stop(); }
     });
 })();
