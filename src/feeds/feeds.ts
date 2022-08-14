@@ -92,8 +92,9 @@ export default async function start(bot: Bot, source: FeedSource = 'remote'): Pr
             break;
     }
     
-    // TODO XXX : Improve error handling
-    feeder.on('error', (err) => {});
+    feeder.on('error', (err) => {
+        logger.error(err);
+    });
 
     return feeder;
 }
