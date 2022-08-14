@@ -1,5 +1,5 @@
 import { Context } from "grammy";
-import { Message } from "grammy/out/types.node";
+import type { Message } from "grammy/out/types.node";
 import fetchToken from "../../externals/coingecko/price";
 
 export default async function priceMiddleware(ctx: Context): Promise<Message.TextMessage | null> {

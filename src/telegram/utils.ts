@@ -2,7 +2,8 @@ import { Bot } from "grammy";
 import { apiThrottler } from '@grammyjs/transformer-throttler';
 
 import config from '../config';
-import { CommandDescriptor } from "../bot";
+import type { CommandDescriptor } from "../bot";
+
 interface TelegramCommand { 
     command: string; 
     description: string;
