@@ -3,6 +3,8 @@ import SaxParser from '@tuananh/sax-parser';
 import { createReadStream } from 'fs';
 import { join } from 'path';
 
+import { groupBy } from 'ramda';
+
 type FeedCategory = 'unknown' | string;
 
 export interface FeedItem {
@@ -47,17 +49,9 @@ export async function parse(opmlXMLPath: string) {
                 }
             })
             .on('end', () => {
-                const itemsByCategory = items.reduce((acc: Record<string, FeedItem[]>, value) => {
-                    if (!acc[value.feedCategory]) {
-                      acc[value.feedCategory] = [];
-                    }
-                  
-                    acc[value.feedCategory].push(value);
-                  
-                    return acc;
-                  }, {});
-
-                resolve(itemsByCategory);
+                resolve(groupBy<FeedItem, string>(function(item) {
+                    return item.feedCategory;
+                }, items));
             })
     });
 }
