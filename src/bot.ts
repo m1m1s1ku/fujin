@@ -1,5 +1,5 @@
-import helpMiddleware from "./telegram/handlers/help";
-import priceMiddleware from "./telegram/handlers/price";
+import helpMiddleware from "./telegram/middleware/help";
+import priceMiddleware from "./telegram/middleware/price";
 
 export interface CommandDescriptor {
     actions: string[],

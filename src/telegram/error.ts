@@ -1,6 +1,6 @@
 import { BotError, Context, GrammyError, HttpError } from "grammy";
 
-export default function handleGrammyError(err: BotError<Context>) {
+export default function handleBotError(err: BotError<Context>) {
     const ctx = err.ctx;
     console.error(`Error while handling update ${ctx.update.update_id}:`);
     const e = err.error;

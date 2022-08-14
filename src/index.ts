@@ -7,7 +7,7 @@ import create from './telegram/utils';
 
 import { commands } from './bot';
 
-import handleGrammyError from './telegram/handlers/error';
+import handleBotError from './telegram/error';
 
 (async () => {
     const bot = await create(commands);
@@ -17,7 +17,7 @@ import handleGrammyError from './telegram/handlers/error';
         bot.command(command.actions, command.middleware);
     }
 
-    bot.catch(handleGrammyError);
+    bot.catch(handleBotError);
 
     const runner = run(bot);
 
