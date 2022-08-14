@@ -4,12 +4,12 @@ import { Bot } from 'grammy';
 
 import { parse } from './opml';
 
-const kRefreshInterval = 3000;
+import lbcc from '../externals/lbcc/constants';
 
 function _onFeedEvent(twitterClient: TwitterApi, telegramBot: Bot, item: { link: string; }): void { // receive full xml item.
     Promise.all([
         twitterClient.v2.tweet(item.link),
-        telegramBot.api.sendMessage(-1001238390870, item.link)
+        telegramBot.api.sendMessage(lbcc.chatID, item.link)
     ]).catch(console.error);
 };
 
@@ -22,7 +22,7 @@ export default async function start(twitterClient: TwitterApi, telegramBot: Bot)
         categories.push(key);
         feeder.add({
             url: value.map(feed => feed.feedURL),
-            refresh: kRefreshInterval,
+            refresh: lbcc.refreshInterval,
             eventName: key
         });
 
