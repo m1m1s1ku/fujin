@@ -14,7 +14,7 @@ function _onFeedEvent(twitterClient: TwitterApi, telegramBot: Bot, item: { link:
 };
 
 export default async function start(twitterClient: TwitterApi, telegramBot: Bot): Promise<RssFeedEmitter> {
-    const items = await parse('../feeds.opml');
+    const items = await parse('../../feeds.opml');
     const categories: string[] = [];
     
     const feeder = new RssFeedEmitter({ skipFirstLoad: true });
