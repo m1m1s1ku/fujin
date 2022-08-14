@@ -1,10 +1,19 @@
 import lbcc from './externals/lbcc/constants';
 import { unwrap } from "./utils";
+import { version } from '../package.json';
 
 export function configBuilder(): {
     name: string;
     version: string;
     address: string;
+    shortName: string;
+    chatID: number;
+    refreshInterval: number;
+    urls: {
+        website: string;
+        twitter: string;
+        telegram: string;
+    }
     twitter: {
         appKey: string;
         appSecret: string;
@@ -27,7 +36,15 @@ export function configBuilder(): {
 
     return {
         name: lbcc.username,
-        version: lbcc.version,
+        version: version,
+        chatID: lbcc.chatID,
+        shortName: lbcc.shortName,
+        urls: {
+            website: lbcc.telegram,
+            twitter: lbcc.twitter,
+            telegram: lbcc.telegram,
+        },
+        refreshInterval: lbcc.refreshInterval,
         address: unwrap(env.DEV_TIP_ADDRESS),
         twitter: {
             appKey: unwrap(env.TWITTER_APP_KEY),

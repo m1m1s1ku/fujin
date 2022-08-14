@@ -1,8 +1,9 @@
 const constants = {
+    shortName: 'LBCC',
     username: 'PinceLBCCBot',
-    version: '0.0.1',
     website: 'https://lbcc.link',
     telegram: 'https://t.me/LeBonClubCrypto',
+    twitter: 'https://twitter.com/LeBonClubCrypto',
     chatID: -1001238390870,
     refreshInterval: 3000,
 };

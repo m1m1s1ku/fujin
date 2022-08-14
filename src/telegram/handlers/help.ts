@@ -4,7 +4,6 @@ import type { Message } from "grammy/out/types.node";
 import type { CommandDescriptor } from "../../bot";
 
 import config from "../../config";
-import lbcc from '../../externals/lbcc/constants';
 
 export default function helpMiddleware(ctx: Context, commands:Record<string, CommandDescriptor>): Promise<Message.TextMessage> {
     let helpText = `${config.name} v${config.version}\n\n`;
@@ -18,6 +17,6 @@ export default function helpMiddleware(ctx: Context, commands:Record<string, Com
     return ctx.reply(helpText, {
         reply_to_message_id: ctx.msg?.message_id ?? undefined,
         parse_mode: 'HTML',
-        reply_markup: new InlineKeyboard().url('Telegram', lbcc.telegram).url("LBCC", lbcc.website),
+        reply_markup: new InlineKeyboard().url('Twitter', config.urls.twitter).url('Telegram', config.urls.telegram).url(config.shortName, config.urls.website),
     });
 }
