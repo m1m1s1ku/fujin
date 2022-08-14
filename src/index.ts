@@ -13,6 +13,22 @@ import feeds from './feeds/feeds';
 import fetchToken from './coingecko/price';
 import lbcc from './lbcc/constants';
 
+interface CommandDescritor {
+    actions: string[],
+    description: string;
+};
+
+const commands: Record<string, CommandDescritor> = {
+    price: {
+        actions: ['p', 'price'],
+        description: 'Get price from CoinGecko',
+    },
+    help: {
+        actions: ['help'],
+        description: 'Get informations about this bot'
+    }
+};
+
 const twitterClient = new TwitterApi({
     appKey: config.twitter.appKey,
     appSecret: config.twitter.appSecret,
@@ -34,7 +50,7 @@ let feeder: FeedEmitter | null = null;
         { command: "help", description: "Get help" },
     ]);
 
-    bot.command('p', async ctx => {
+    bot.command(commands.price.actions, async ctx => {
         if(!ctx.match) { return; }
 
         const message = await fetchToken(ctx.match);
@@ -44,15 +60,19 @@ let feeder: FeedEmitter | null = null;
         return ctx.reply(message);
     })
 
-    bot.command('help', ctx => {
-        return ctx.reply(`/p - get coin data
-/help - get help
+    bot.command(commands.help.actions, ctx => {
+        let helpText = `${config.name}\n\n`;
 
-Donate : kujira1fygqhejwp6uzcfaf3yuypcwcd662q9u7rrzpna
-`, {
+        for(const [ , commandDescriptor] of Object.entries(commands)) {
+            helpText += `/${commandDescriptor.actions[0]} : ${commandDescriptor.description}\n`
+        }
+
+        helpText += `<b>Tip :</b> <pre>${config.address}</pre>`;
+
+        return ctx.reply(helpText, {
             reply_to_message_id: ctx.msg.message_id,
             parse_mode: 'HTML',
-            reply_markup: new InlineKeyboard().url("LBCC", lbcc.website).url('Telegram', lbcc.telegram),
+            reply_markup: new InlineKeyboard().url('Telegram', lbcc.telegram).url("LBCC", lbcc.website),
         });
     });
 

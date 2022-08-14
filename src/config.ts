@@ -1,6 +1,9 @@
 import { unwrap } from "./utils";
 
 export function configBuilder(): {
+    name: string;
+    version: string;
+    address: string;
     twitter: {
         appKey: string;
         appSecret: string;
@@ -22,6 +25,9 @@ export function configBuilder(): {
     }
 
     return {
+        name: 'PinceLBCCBot',
+        version: '0.0.1',
+        address: 'kujira1fygqhejwp6uzcfaf3yuypcwcd662q9u7rrzpna',
         twitter: {
             appKey: unwrap(env.TWITTER_APP_KEY),
             appSecret: unwrap(env.TWITTER_APP_SECRET),
