@@ -1,5 +1,5 @@
 import fetch from 'cross-fetch';
-import { bigIntToString, trendingIcon } from '../utils';
+import { bigIntToString, trendingIcon } from '../../utils';
 
 const kGCAPI = "https://api.coingecko.com/api/v3";
 
