@@ -9,6 +9,10 @@ export function configBuilder(): {
     shortName: string;
     chatID: number;
     refreshInterval: number;
+    supabase: {
+        url: string;
+        anonKey: string;
+    }
     urls: {
         website: string;
         twitter: string;
@@ -24,7 +28,16 @@ export function configBuilder(): {
         botToken: string;
     },
 } {
-    const variables = ['TWITTER_APP_KEY', 'TWITTER_APP_SECRET', 'TWITTER_ACCESS_TOKEN', 'TWITTER_ACCESS_SECRET', 'TELEGRAM_BOT_TOKEN', 'DEV_TIP_ADDRESS'];
+    const variables = [
+        'TWITTER_APP_KEY',
+        'TWITTER_APP_SECRET',
+        'TWITTER_ACCESS_TOKEN',
+        'TWITTER_ACCESS_SECRET',
+        'TELEGRAM_BOT_TOKEN',
+        'SUPABASE_URL',
+        'SUPABASE_ANON_KEY',
+        'DEV_TIP_ADDRESS'
+    ];
 
     const env = process.env;
 
@@ -46,6 +59,10 @@ export function configBuilder(): {
         },
         refreshInterval: lbcc.refreshInterval,
         address: unwrap(env.DEV_TIP_ADDRESS),
+        supabase: {
+            url: unwrap(env.SUPABASE_URL),
+            anonKey: unwrap(env.SUPABASE_ANON_KEY),
+        },
         twitter: {
             appKey: unwrap(env.TWITTER_APP_KEY),
             appSecret: unwrap(env.TWITTER_APP_SECRET),
