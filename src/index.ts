@@ -15,8 +15,9 @@ import handleGrammyError from './telegram/handlers/error';
     const bot = await create(commands);
     const feeder = await feeds(twitterClient, bot);
 
-    bot.command(commands.price.actions, commands.price.middleware);
-    bot.command(commands.help.actions, commands.help.middleware);
+    for (const [, command] of Object.entries(commands)) {
+        bot.command(command.actions, command.middleware);
+    }
 
     bot.catch(handleGrammyError);
 
@@ -24,13 +25,11 @@ import handleGrammyError from './telegram/handlers/error';
 
     console.warn('Started');
 
-    process.once("SIGINT", function() {
+    function cleanup() {
         feeder.destroy();
         if(runner.isRunning()) { runner.stop(); }
-    });
-    
-    process.once("SIGTERM", function() {
-        feeder.destroy();
-        if(runner.isRunning()) { runner.stop(); }
-    });
+    }
+
+    process.once("SIGINT", cleanup);
+    process.once("SIGTERM", cleanup);
 })();
