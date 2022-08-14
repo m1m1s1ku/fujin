@@ -1,5 +1,5 @@
 import fetch from 'cross-fetch';
-import { bigIntToString, trendingIcon } from '../../utils';
+import { bigIntToString, formatPercentage, localizeNumber, trendingIcon } from '../../utils';
 
 const kGCAPI = "https://api.coingecko.com/api/v3";
 
@@ -32,18 +32,20 @@ export default async function fetchToken(token: string) {
     const maxSupply: number = marketData.max_supply;
     const followers: number = communityData.twitter_followers;
 
-    const message = `${name} ($${symbol.toUpperCase()})
+    const twitterHandle: string = coinData.links.twitter_screen_name;
+
+    const message = `<a href="https://twitter.com/${twitterHandle}">${name}</a> ($${symbol.toUpperCase()})
 Price : $${currentPrice}
 ${high && low ? `H|L : $${high}|$${low}` : ''}
 ${marketCap ? `MC : $${bigIntToString(marketCap)}` : ''}
 ${fdv ? `FDV : $${bigIntToString(fdv)}` : ''}
 ${volume ? `Vol : $${bigIntToString(volume)}` : ''}
-${change1h ? `${trendingIcon(change1h)} 1h : ${change1h.toFixed(0)}%` : ''}
-${change24h ? `${trendingIcon(change24h)} 24h : ${change24h.toFixed(0)}%` : ''}
-${change7d ? `${trendingIcon(change7d)} 7d : ${change7d.toFixed(0)}%` : ''}
-${maxSupply ? `Max supply : ${maxSupply}` : ''}
-${followers ? `Followers : ${followers}` : ''}
-${ath && changeFromATH && rank ? `ATH : $${ath} | Change ${changeFromATH.toFixed(0)}% | Rank : ${rank}` : ''}`.replace(/^\s*\n/gm, '')
+${change1h ? `${trendingIcon(change1h)} 1h : ${formatPercentage(change1h)}%` : ''}
+${change24h ? `${trendingIcon(change24h)} 24h : ${formatPercentage(change24h)}%` : ''}
+${change7d ? `${trendingIcon(change7d)} 7d : ${formatPercentage(change7d)}%` : ''}
+${maxSupply ? `Max supply : ${localizeNumber(maxSupply)}` : ''}
+${followers ? `Followers : ${localizeNumber(followers)}` : ''}
+${ath && changeFromATH && rank ? `ATH : $${ath} | Change ${formatPercentage(changeFromATH)}% | Rank : ${rank}` : ''}`.replace(/^\s*\n/gm, '')
 
 return message;
 }

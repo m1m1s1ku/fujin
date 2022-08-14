@@ -29,8 +29,8 @@ export function indicator(percent: number){
     return '🔴';
 }
 
-export function formatSupplyChange(supply: number){
-    return supply.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0})
+export function localizeNumber(number: number){
+    return number.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0})
 }
 
 export function bigIntToString(mc: number) {
