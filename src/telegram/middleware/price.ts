@@ -6,7 +6,6 @@ import logger from "../../logger";
 
 export default async function priceMiddleware(ctx: Context): Promise<Message.TextMessage | null> {
     if(!ctx.match) { return null; }
-    if(ctx.message?.from?.is_bot) { return null; }
 
     const message = await fetchToken(ctx.match as string);
 
