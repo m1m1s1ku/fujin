@@ -1,3 +1,10 @@
+/**
+ * Helps TypeScript to understand that the value is defined in special cases.
+ * 
+ * @param val 
+ * 
+ * @returns type-safe value
+ */
 export function unwrap<T = unknown>(val: unknown): T {
     return val as T;
 }
