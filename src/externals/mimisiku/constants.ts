@@ -4,7 +4,7 @@ const constants = {
     website: 'https://mimisiku.dev/fujin',
     telegram: 'https://t.me/m1m1s1ku',
     twitter: 'https://twitter.com/m1m1s1ku',
-    chatID: -1001622816574,
+    chatID: -1001238390870,
     refreshInterval: 3000,
 };
 
