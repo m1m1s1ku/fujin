@@ -1,3 +1,4 @@
+import lbcc from './externals/lbcc/constants';
 import { unwrap } from "./utils";
 
 export function configBuilder(): {
@@ -14,7 +15,7 @@ export function configBuilder(): {
         botToken: string;
     },
 } {
-    const variables = ['TWITTER_APP_KEY', 'TWITTER_APP_SECRET', 'TWITTER_ACCESS_TOKEN', 'TWITTER_ACCESS_SECRET', 'TELEGRAM_BOT_TOKEN'];
+    const variables = ['TWITTER_APP_KEY', 'TWITTER_APP_SECRET', 'TWITTER_ACCESS_TOKEN', 'TWITTER_ACCESS_SECRET', 'TELEGRAM_BOT_TOKEN', 'DEV_TIP_ADDRESS'];
 
     const env = process.env;
 
@@ -25,9 +26,9 @@ export function configBuilder(): {
     }
 
     return {
-        name: 'PinceLBCCBot',
-        version: '0.0.1',
-        address: 'kujira1fygqhejwp6uzcfaf3yuypcwcd662q9u7rrzpna',
+        name: lbcc.username,
+        version: lbcc.version,
+        address: unwrap(env.DEV_TIP_ADDRESS),
         twitter: {
             appKey: unwrap(env.TWITTER_APP_KEY),
             appSecret: unwrap(env.TWITTER_APP_SECRET),
