@@ -2,8 +2,6 @@ import 'dotenv/config';
 
 import { run } from '@grammyjs/runner';
 
-import type FeedEmitter from 'rss-feed-emitter';
-
 import feeds from './feeds/feeds';
 import twitterClient from './twitter';
 
@@ -26,7 +24,7 @@ import handleGrammyError from './telegram/handlers/error';
     };
 
     const bot = await create(commands);
-    const feeder: FeedEmitter = await feeds(twitterClient, bot);
+    const feeder = await feeds(twitterClient, bot);
 
     bot.command(commands.price.actions, priceMiddleware);
     bot.command(commands.help.actions, ctx => helpMiddleware(ctx, commands));
