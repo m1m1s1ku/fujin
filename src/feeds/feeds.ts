@@ -29,6 +29,7 @@ type Feed = {
     htmlURL: string;
     type: 'rss';
     category: string;
+    disabled: boolean;
 }  
 
 /**
@@ -78,7 +79,7 @@ export default async function start(bot: Bot, source: FeedSource = 'remote'): Pr
 
             const grouped = groupBy<Feed, string>(function(feed) {
                 return feed.category;
-            }, databaseItems.data);
+            }, databaseItems.data.filter(feed => feed.disabled === false));
 
             for(const [category, value] of Object.entries(grouped)) {
                 feeder.add({
