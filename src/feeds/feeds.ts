@@ -92,8 +92,8 @@ export default async function start(bot: Bot, source: FeedSource = 'remote'): Pr
             break;
     }
     
-    feeder.on('error', (err) => {
-        logger.error(err);
+    feeder.on('error', (_err) => {
+        // logger.error(err);
     });
 
     return feeder;
