@@ -1,12 +1,12 @@
 import RssFeedEmitter from 'rss-feed-emitter';
 import { Bot } from 'grammy';
-import { groupBy } from 'ramda';
+// import { groupBy } from 'ramda';
 
 import { parse } from './opml';
 
 import config from '../config';
-import twitter from '../externals/twitter/twitter';
-import client from '../externals/database/client';
+// import twitter from '../externals/twitter/twitter';
+// import client from '../externals/database/client';
 import logger from '../logger';
 
 const kImportIntoDatabase = false;
@@ -14,7 +14,7 @@ const kImportIntoDatabase = false;
 function _onFeedEvent(bot: Bot, item: { link: string; }): void { // receive full xml item.
     logger.info(`Sending ${item.link}`);
     Promise.all([
-        twitter.v2.tweet(item.link),
+        // twitter.v2.tweet(item.link),
         bot.api.sendMessage(config.chatID, item.link)
     ]).catch((err) => logger.error(err));
 };
@@ -37,7 +37,7 @@ type Feed = {
  * @param source : Where to get feeds
  * @returns Emitter handle
  */
-export default async function start(bot: Bot, source: FeedSource = 'remote'): Promise<RssFeedEmitter> {
+export default async function start(bot: Bot, source: FeedSource = 'local'): Promise<RssFeedEmitter> {
     if(config.verbose) {
         logger.info(`Getting feeds from ${source}`);
     }
@@ -59,7 +59,7 @@ export default async function start(bot: Bot, source: FeedSource = 'remote'): Pr
                 if(kImportIntoDatabase){ feeds.push(...value); }
             }
     
-            if(kImportIntoDatabase) {
+            /*if(kImportIntoDatabase) {
                 await client.from('feeds').insert(feeds.map(feed => {
                     return {
                         title: feed.title,
@@ -69,9 +69,9 @@ export default async function start(bot: Bot, source: FeedSource = 'remote'): Pr
                         category: feed.feedCategory,
                     };
                 }));
-            }
+            }*/
             break;
-        case 'remote':
+        /*case 'remote':
             const databaseItems = await client.from<Feed>('feeds').select('*');
             if(!databaseItems.data) {
                 throw new Error('Empty database');
@@ -90,7 +90,7 @@ export default async function start(bot: Bot, source: FeedSource = 'remote'): Pr
                 feeder.on(category, (item) => _onFeedEvent(bot, item));
             }
 
-            break;
+            break;*/
     }
     
     feeder.on('error', (_err) => {
